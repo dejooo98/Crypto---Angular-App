@@ -1,3 +1,5 @@
-<app-header></app-header>
+<app-header
+  (homeButtonClicked)="homeButtonClicked()"
+  (settingsButtonClicked)="settingsButtonClicked()"
+></app-header>
 <router-outlet></router-outlet>
-<app-footer></app-footer>

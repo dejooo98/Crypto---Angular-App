@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+tr.mat-row:hover {
+  background-color: var(--bs-gray-100);
+  cursor: pointer;
+}

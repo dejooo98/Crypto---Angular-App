@@ -20,6 +20,10 @@ export enum AvailableCurrencies {
   CNY = 'CYN',
 }
 
+export interface ICurrencyItemType {
+  [key: string]: ICurrency;
+}
+
 export interface InitSettings {
   uiCurrency: AvailableCurrencies;
 }
