@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CryptoService } from '../services/crypto.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Crypto } from '../models/crypto.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-list',
@@ -11,18 +13,22 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./crypto-list.component.css'],
 })
 export class CryptoListComponent implements OnInit {
-  val: any;
+  val!: string;
   currency: string = 'EUR';
-  res: any;
+  res!: string;
 
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'daily_change'];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Crypto>;
+
+  coin$!: Observable<any>;
 
   constructor(
     private router: Router,
     private service: CryptoService,
-    private store: Store
-  ) {}
+    private store: Store<{ coin: Crypto }>
+  ) {
+    this.coin$ = store.select('coin');
+  }
 
   loadCoins(coinId: string) {
     this.store.dispatch(getCoin({ coinId }));

@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+
+//Ngrx
 import { StoreModule } from '@ngrx/store';
+import { coinReducer } from './store/cryptos.reducer';
 
 //Components
 import { AppComponent } from './app.component';
@@ -42,7 +45,9 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ coin: coinReducer }),
+
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
