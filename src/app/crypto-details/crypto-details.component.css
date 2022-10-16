@@ -1,0 +1,4 @@
+.container {
+  background-color: var(--bs-gray-100);
+  padding: 2rem;
+}

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 //Components
 import { AppComponent } from './app.component';
@@ -12,8 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeroComponent } from './shared/hero/hero.component';
-import { SettingsComponent } from './settings/settings.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 //Angular Material Components
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,6 +42,7 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

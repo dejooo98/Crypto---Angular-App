@@ -1,1 +1,34 @@
-<p>crypto-details works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p><b>Rank</b> {{ coinData?.market_cap_rank }}</p>
+      <p><b>Name</b> {{ coinData?.name }}</p>
+      <p><b>Symbol</b> {{ coinData?.symbol }}</p>
+      <p>
+        <b>Price</b> {{ coinData?.market_data.current_price.eur | currency }}
+      </p>
+      <p>
+        <b>24h Volume and Market Cap</b>
+        {{ coinData?.market_data.market_cap_change_24h_in_currency.usd }}
+      </p>
+      <p><b>Price in Bitcoin</b></p>
+      <p>
+        <b>1h Change</b>
+        {{ coinData?.market_data.price_change_percentage_1h_in_currency.usd }}
+      </p>
+      <p>
+        <b>24h Change</b>
+        {{ coinData?.market_data.price_change_percentage_24h_in_currency.usd }}
+      </p>
+      <p>
+        <b>7days Change</b>
+        {{ coinData?.market_data.price_change_percentage_7d_in_currency.usd }}
+      </p>
+      <p>
+        <b>Total and available supply</b>
+        {{ coinData?.market_data.total_supply }}
+      </p>
+    </div>
+  </div>
+  <app-refresh></app-refresh>
+</div>
