@@ -6,7 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 //Ngrx
 import { StoreModule } from '@ngrx/store';
-import { coinReducer } from './store/cryptos.reducer';
+import { CryptoEffects } from './store/cryptos.efects';
+import { cryptoReducer } from './store/cryptos.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 //Components
 import { AppComponent } from './app.component';
@@ -45,8 +47,8 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    StoreModule.forRoot({ coin: coinReducer }),
-
+    StoreModule.forRoot({ cryptos: cryptoReducer }),
+    EffectsModule.forRoot([CryptoEffects]),
     ReactiveFormsModule,
   ],
   providers: [],

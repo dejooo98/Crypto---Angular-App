@@ -1,11 +1,27 @@
-import { Crypto } from './../models/crypto.model';
+import { Crypto, CryptoState } from './../models/crypto.model';
 import { createReducer, on } from '@ngrx/store';
-import { getCoin, retrievedCoinList } from './cryptos.action';
+import {
+  loadCryptosFailure,
+  loadCryptosSuccess,
+  onLoadCryptos,
+} from './cryptos.action';
 
-export const initialState: ReadonlyArray<Crypto> = [];
+export const initialState: CryptoState = {
+  cryptos: [],
+};
 
-export const coinReducer = createReducer(
+export const cryptoReducer = createReducer(
   initialState,
-  on(getCoin, (state, { coinId }) => coinId),
-  on(retrievedCoinList, (state, { coins }) => coins)
+  on(onLoadCryptos, (state) => ({ ...state })),
+
+  on(loadCryptosSuccess, (state, { cryptos }) => ({
+    ...state,
+    cryptos: cryptos,
+  })),
+  // Handle todos load failure
+  on(loadCryptosFailure, (state, { error }) => ({
+    ...state,
+    error: error,
+    status: 'error',
+  }))
 );

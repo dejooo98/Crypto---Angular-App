@@ -70,3 +70,8 @@ export interface Crypto {
   price_change_percentage_24h: number;
   symbol: string;
 }
+
+export interface CryptoState {
+  cryptos: Crypto[];
+  error?: string;
+}
