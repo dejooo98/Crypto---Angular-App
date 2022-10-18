@@ -1,12 +1,12 @@
+import { getCryptos } from './../store/cryptos.selector';
 import { Crypto } from './../models/crypto.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CryptoService } from '../services/crypto.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from 'rxjs';
 import { onLoadCryptos } from '../store/cryptos.action';
-import { selectAllCryptos } from '../store/cryptos.effects';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-list',
@@ -20,13 +20,14 @@ export class CryptoListComponent implements OnInit {
   response!: any;
 
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'daily_change'];
-  dataSource!: MatTableDataSource<Crypto>;
 
-  cryptoData$ = this.store.select(selectAllCryptos as any);
+  // cryptoData$ = this.store.select(selectAllCryptos as any);
+  cryptoData$!: Observable<any>;
+  dataSource!: MatTableDataSource<Crypto[]>;
 
   constructor(
     private router: Router,
-    // private service: CryptoService,
+    private service: CryptoService,
     private store: Store
   ) {}
 
@@ -35,13 +36,14 @@ export class CryptoListComponent implements OnInit {
   }
 
   getAllData() {
+    this.cryptoData$ = this.store.select(getCryptos);
     this.store.dispatch(onLoadCryptos());
-    console.log('LOG');
+    // this.dataSource = new MatTableDataSource(this.cryptoData$);
+
     console.log('Drugi log', this.cryptoData$);
 
     // this.service.getCurrency(this.currency).subscribe((res) => {
     //   this.dataSource = new MatTableDataSource(res);
-    //   console.log('clicked');
     // });
   }
 

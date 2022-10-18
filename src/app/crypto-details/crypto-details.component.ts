@@ -23,7 +23,7 @@ export class CryptoDetailsComponent implements OnInit {
     });
     this.getCoinData();
     this.service.getCurrency(this.currency).subscribe((val) => {
-      this.currency = val;
+      // this.currency = val;
 
       this.getCoinData();
     });

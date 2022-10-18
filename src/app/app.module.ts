@@ -26,6 +26,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RefreshComponent } from './shared/refresh/refresh.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     StoreModule.forRoot({ cryptos: cryptoReducer }),
     EffectsModule.forRoot([CryptoEffects]),
     ReactiveFormsModule,
+    MatGridListModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

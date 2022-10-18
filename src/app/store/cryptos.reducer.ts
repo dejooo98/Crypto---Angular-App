@@ -13,11 +13,14 @@ export const initialState: CryptoState = {
 export const cryptoReducer = createReducer(
   initialState,
   on(onLoadCryptos, (state) => ({ ...state })),
+  on(loadCryptosSuccess, (state, action) => {
+    return { ...state, cryptos: action.cryptos };
+  }),
 
-  on(loadCryptosSuccess, (state, { cryptos }) => ({
-    ...state,
-    cryptos: cryptos,
-  })),
+  // on(loadCryptosSuccess, (state, { cryptos }) => ({
+  //   ...state,
+  //   cryptos: cryptos,
+  // })),
   // Handle todos load failure
   on(loadCryptosFailure, (state, { error }) => ({
     ...state,

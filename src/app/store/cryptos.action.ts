@@ -5,7 +5,7 @@ export const onLoadCryptos = createAction('[Crypto List] List Cryptos');
 
 export const loadCryptosSuccess = createAction(
   '[Crypto API] Crypto Load Success',
-  props<{ cryptos: Crypto[] }>()
+  props<{ cryptos: any }>()
 );
 
 export const loadCryptosFailure = createAction(
