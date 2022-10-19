@@ -1,4 +1,4 @@
-import { Crypto, CryptoState } from './../models/crypto.model';
+import { CryptoState } from './../models/crypto.model';
 import { createReducer, on } from '@ngrx/store';
 import {
   loadCryptosFailure,
@@ -17,11 +17,6 @@ export const cryptoReducer = createReducer(
     return { ...state, cryptos: action.cryptos };
   }),
 
-  // on(loadCryptosSuccess, (state, { cryptos }) => ({
-  //   ...state,
-  //   cryptos: cryptos,
-  // })),
-  // Handle todos load failure
   on(loadCryptosFailure, (state, { error }) => ({
     ...state,
     error: error,

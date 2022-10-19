@@ -7,6 +7,7 @@ import { CryptoService } from '../services/crypto.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { onLoadCryptos } from '../store/cryptos.action';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-crypto-list',
@@ -21,30 +22,54 @@ export class CryptoListComponent implements OnInit {
 
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'daily_change'];
 
-  // cryptoData$ = this.store.select(selectAllCryptos as any);
   cryptoData$!: Observable<any>;
   dataSource!: MatTableDataSource<Crypto[]>;
 
+  isTableLoading = false;
+  updateDate!: Date;
+  lastUpdated!: string;
+  refreshInterval!: Observable<number>;
+
   constructor(
     private router: Router,
-    private service: CryptoService,
+    public snackBar: MatSnackBar,
     private store: Store
   ) {}
 
   ngOnInit(): void {
     this.getAllData();
+    this.refreshData();
   }
 
   getAllData() {
     this.cryptoData$ = this.store.select(getCryptos);
     this.store.dispatch(onLoadCryptos());
-    // this.dataSource = new MatTableDataSource(this.cryptoData$);
 
-    console.log('Drugi log', this.cryptoData$);
+    // console.log('Drugi log', this.cryptoData$);
+  }
 
-    // this.service.getCurrency(this.currency).subscribe((res) => {
-    //   this.dataSource = new MatTableDataSource(res);
-    // });
+  //REFRESH
+  ngOnDestroy() {
+    document.removeEventListener('visibilitychange', this.refreshOnVisible);
+  }
+
+  refreshData() {
+    this.isTableLoading = true;
+    this.getAllData();
+    this.isTableLoading = false;
+    this.updateDate = new Date();
+    this.lastUpdated = this.updateDate.toLocaleTimeString();
+    this.openSnackBar(`Refreshed: ${this.lastUpdated}`);
+  }
+
+  refreshOnVisible = () => {
+    if (document.visibilityState === 'visible' && !this.isTableLoading) {
+      this.refreshData();
+    }
+  };
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Dismiss', { duration: 3000 });
   }
 
   gotoDetails(row: any) {

@@ -25,7 +25,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { RefreshComponent } from './shared/refresh/refresh.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -39,7 +38,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HeroComponent,
     SettingsComponent,
     HomePageComponent,
-    RefreshComponent,
   ],
   imports: [
     BrowserModule,

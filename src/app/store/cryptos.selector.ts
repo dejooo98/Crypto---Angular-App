@@ -8,6 +8,6 @@ export const getCryptos = createSelector(getCryptosState, (state) => {
   return state.cryptos;
 });
 
-// export const getPostById = createSelector(getPostsState, (state, props) => {
-//   return state.posts.find((post) => post.id === props.id);
+// export const getCryptosById = createSelector(getCryptosState, (state) => {
+//   return state.cryptos.find((crypto) => crypto.id === props.id);
 // });

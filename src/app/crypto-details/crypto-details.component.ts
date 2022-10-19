@@ -22,11 +22,11 @@ export class CryptoDetailsComponent implements OnInit {
       this.coinId = val['id'];
     });
     this.getCoinData();
-    this.service.getCurrency(this.currency).subscribe((val) => {
-      // this.currency = val;
+    // this.service.getCurrency(this.currency).subscribe((val) => {
+    //   this.currency = val as any;
 
-      this.getCoinData();
-    });
+    //   this.getCoinData();
+    // });
   }
 
   getCoinData() {
