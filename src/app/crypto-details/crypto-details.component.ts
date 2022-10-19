@@ -30,7 +30,7 @@ export class CryptoDetailsComponent implements OnInit {
     //
     this.activatedRoute.params.subscribe((val) => {
       this.coinId = val['id'];
-      console.log(this.coinId);
+      // console.log(this.coinId);
     });
     this.getCoinData();
     this.service.getCurrency(this.currency).subscribe((val) => {
@@ -42,7 +42,7 @@ export class CryptoDetailsComponent implements OnInit {
   getCoinData() {
     this.service.getCurrencyById(this.coinId).subscribe((res) => {
       console.log(this.coinData);
-      this.coinData = res;
+      // this.coinData = res;
     });
   }
 }
