@@ -1,6 +1,10 @@
+import { Crypto } from './../models/crypto.model';
 import { CryptoService } from './../services/crypto.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
 
 @Component({
   selector: 'app-crypto-details',
@@ -12,27 +16,29 @@ export class CryptoDetailsComponent implements OnInit {
   coinId!: string;
   currency: string = 'EUR';
 
+  crypto!: Observable<Crypto>;
+
   constructor(
     private service: CryptoService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((val) => {
-      this.coinId = val['id'];
-    });
-    this.getCoinData();
+    // this.activatedRoute.params.subscribe((val) => {
+    //   this.coinId = val['id'];
+    // });
+    // this.getCoinData();
     // this.service.getCurrency(this.currency).subscribe((val) => {
     //   this.currency = val as any;
-
     //   this.getCoinData();
     // });
   }
 
-  getCoinData() {
-    this.service.getCurrencyById(this.coinId).subscribe((res) => {
-      this.coinData = res;
-      console.log(this.coinData);
-    });
-  }
+  // getCoinData() {
+  //   this.service.getCurrencyById(this.coinId).subscribe((res) => {
+  //     console.log(this.coinData);
+  //     this.coinData = res;
+  //   });
+  //}
 }
