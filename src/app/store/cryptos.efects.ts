@@ -11,6 +11,7 @@ export class CryptoEffects {
     private cryptoService: CryptoService
   ) {}
   currency: string = 'EUR';
+  coinId: any;
 
   loadCryptos$ = createEffect(() => {
     return this.actions$.pipe(
@@ -25,4 +26,18 @@ export class CryptoEffects {
       })
     );
   });
+
+  // loadCryptosDetails$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(onLoadCryptos),
+  //     mergeMap((action) => {
+  //       return this.cryptoService.getCurrencyById(this.coinId).pipe(
+  //         map((id) => {
+  //           // console.log(id);
+  //           return loadCryptosSuccess({ id });
+  //         })
+  //       );
+  //     })
+  //   );
+  // });
 }

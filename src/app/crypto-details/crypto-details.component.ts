@@ -16,7 +16,7 @@ export class CryptoDetailsComponent implements OnInit {
   coinId!: string;
   currency: string = 'EUR';
 
-  crypto!: Observable<Crypto>;
+  crypto$!: Observable<Crypto>;
 
   constructor(
     private service: CryptoService,
@@ -25,20 +25,24 @@ export class CryptoDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe((val) => {
-    //   this.coinId = val['id'];
-    // });
-    // this.getCoinData();
-    // this.service.getCurrency(this.currency).subscribe((val) => {
-    //   this.currency = val as any;
-    //   this.getCoinData();
-    // });
+    // this.store.dispatch(getCoinDetail());
+    // this.crypto$ = store.select(onLoadCryptosDetails);
+    //
+    this.activatedRoute.params.subscribe((val) => {
+      this.coinId = val['id'];
+      console.log(this.coinId);
+    });
+    this.getCoinData();
+    this.service.getCurrency(this.currency).subscribe((val) => {
+      this.currency = val as any;
+      this.getCoinData();
+    });
   }
 
-  // getCoinData() {
-  //   this.service.getCurrencyById(this.coinId).subscribe((res) => {
-  //     console.log(this.coinData);
-  //     this.coinData = res;
-  //   });
-  //}
+  getCoinData() {
+    this.service.getCurrencyById(this.coinId).subscribe((res) => {
+      console.log(this.coinData);
+      this.coinData = res;
+    });
+  }
 }

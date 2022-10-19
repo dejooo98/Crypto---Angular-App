@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RefreshComponent } from './shared/refresh/refresh.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HeroComponent,
     SettingsComponent,
     HomePageComponent,
+    RefreshComponent,
   ],
   imports: [
     BrowserModule,
