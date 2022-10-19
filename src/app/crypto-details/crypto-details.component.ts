@@ -41,8 +41,8 @@ export class CryptoDetailsComponent implements OnInit {
 
   getCoinData() {
     this.service.getCurrencyById(this.coinId).subscribe((res) => {
-      console.log(this.coinData);
-      // this.coinData = res;
+      // console.log(this.coinData);
+      this.coinData = res;
     });
   }
 }
