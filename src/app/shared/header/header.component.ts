@@ -5,6 +5,7 @@ import {
   Output,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { CurrencyService } from 'src/app/services/currency.service';
 
 @Component({
   selector: 'app-header',
@@ -14,17 +15,18 @@ import {
 })
 export class HeaderComponent implements OnInit {
   @Output() homeButtonClicked: EventEmitter<void> = new EventEmitter();
-  @Output() settingsButtonClicked: EventEmitter<void> = new EventEmitter();
+  selectedCurrency: string = 'EUR';
 
-  constructor() {}
+  constructor(private currencyService: CurrencyService) {}
 
   ngOnInit(): void {}
 
-  homeButtonClickedEvent(): void {
-    this.homeButtonClicked.next();
+  sendCurrency(event: string) {
+    // console.log(event);
+    this.currencyService.setCurrecny(event);
   }
 
-  settingsButtonClickedEvent(): void {
-    this.settingsButtonClicked.next();
+  homeButtonClickedEvent(): void {
+    this.homeButtonClicked.next();
   }
 }

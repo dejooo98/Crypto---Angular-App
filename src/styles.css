@@ -15,3 +15,6 @@ body {
 .mat-button-wrapper {
   color: #fff;
 }
+.mat-radio-label {
+  margin-right: 1rem;
+}

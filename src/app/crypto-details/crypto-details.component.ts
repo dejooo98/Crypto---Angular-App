@@ -3,8 +3,9 @@ import { CryptoService } from './../services/crypto.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from '../store/app.state';
+import { CurrencyService } from '../services/currency.service';
+// import { Store } from '@ngrx/store';
+// import { AppState } from '../store/app.state';
 
 @Component({
   selector: 'app-crypto-details',
@@ -19,9 +20,9 @@ export class CryptoDetailsComponent implements OnInit {
   crypto$!: Observable<Crypto>;
 
   constructor(
-    private service: CryptoService,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<AppState>
+    private cryptoService: CryptoService,
+    private activatedRoute: ActivatedRoute, // private store: Store<AppState>
+    private currencyService: CurrencyService
   ) {}
 
   ngOnInit(): void {
@@ -33,15 +34,35 @@ export class CryptoDetailsComponent implements OnInit {
       // console.log(this.coinId);
     });
     this.getCoinData();
-    this.service.getCurrency(this.currency).subscribe((val) => {
+    this.currencyService.getCurrencyValut().subscribe((val) => {
       this.currency = val as any;
       this.getCoinData();
     });
   }
 
   getCoinData() {
-    this.service.getCurrencyById(this.coinId).subscribe((res) => {
+    this.cryptoService.getCurrencyById(this.coinId).subscribe((res) => {
       // console.log(this.coinData);
+
+      if (this.currency === 'USD') {
+        res.market_data.current_price.eur = res.market_data.current_price.usd;
+        res.market_data.current_price.cny = res.market_data.current_price.usd;
+
+        res.market_data.market_cap.eur = res.market_data.market_cap.usd;
+        res.market_data.market_cap.cny = res.market_data.market_cap.usd;
+      } else if (this.currency === 'EUR') {
+        res.market_data.current_price.usd = res.market_data.current_price.eur;
+        res.market_data.current_price.cny = res.market_data.current_price.eur;
+
+        res.market_data.market_cap.usd = res.market_data.market_cap.eur;
+        res.market_data.market_cap.cny = res.market_data.market_cap.eur;
+      } else {
+        res.market_data.current_price.usd = res.market_data.current_price.cny;
+        res.market_data.current_price.eur = res.market_data.current_price.cny;
+
+        res.market_data.market_cap.usd = res.market_data.market_cap.cny;
+        res.market_data.market_cap.eur = res.market_data.market_cap.cny;
+      }
       this.coinData = res;
     });
   }

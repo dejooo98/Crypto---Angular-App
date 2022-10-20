@@ -1,4 +1,4 @@
-button:not(:disabled) {
+button {
   height: 70%;
   width: 40px;
   background: #3f51b5;

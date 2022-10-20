@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { CryptoService } from './../services/crypto.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CryptoDetailsComponent } from './crypto-details.component';
@@ -5,12 +7,14 @@ import { CryptoDetailsComponent } from './crypto-details.component';
 describe('CryptoDetailsComponent', () => {
   let component: CryptoDetailsComponent;
   let fixture: ComponentFixture<CryptoDetailsComponent>;
+  let cryptoServiceMock: CryptoService;
+  let activatedRoute: ActivatedRoute;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CryptoDetailsComponent ]
-    })
-    .compileComponents();
+      providers: [cryptoServiceMock, activatedRoute],
+      declarations: [CryptoDetailsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,7 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeroComponent } from './shared/hero/hero.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 //Angular Material Components
@@ -28,6 +27,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RefreshComponent } from './shared/refresh/refresh.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,6 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     HeaderComponent,
     FooterComponent,
     HeroComponent,
-    SettingsComponent,
     HomePageComponent,
     RefreshComponent,
   ],
@@ -51,9 +51,11 @@ import { RefreshComponent } from './shared/refresh/refresh.component';
     MatTableModule,
     StoreModule.forRoot({ cryptos: cryptoReducer }),
     EffectsModule.forRoot([CryptoEffects]),
-    ReactiveFormsModule,
+    FormsModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

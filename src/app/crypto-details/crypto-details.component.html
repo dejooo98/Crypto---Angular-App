@@ -6,7 +6,8 @@
       <p><b>Name</b> {{ coinData?.name }}</p>
       <p><b>Symbol</b> {{ coinData?.symbol }}</p>
       <p>
-        <b>Price</b> {{ coinData?.market_data.current_price.eur | currency }}
+        <b>Price</b>
+        {{ coinData?.market_data.current_price.eur | currency: currency }}
       </p>
       <p>
         <b>24h Volume and Market Cap</b>

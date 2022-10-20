@@ -40,8 +40,8 @@ export class RefreshComponent implements OnInit {
   refreshData() {
     this.isTableLoading = true;
     this.getAllData();
-    this.isTableLoading = false;
     this.updateDate = new Date();
+    this.isTableLoading = false;
     this.lastUpdated = this.updateDate.toLocaleTimeString();
     this.openSnackBar(`Refreshed: ${this.lastUpdated}`);
   }
