@@ -1,6 +1,5 @@
 import { CryptoService } from './../services/crypto.service';
 import { getCryptos } from './../store/cryptos.selector';
-import { Crypto } from './../models/crypto.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -18,7 +17,7 @@ export class CryptoListComponent implements OnInit {
   currency: string = 'EUR';
   coinId!: string;
 
-  //podaci za tabelu
+  // //podaci za tabelu
   displayedColumns: string[] = ['rank', 'symbol', 'price', 'daily_change'];
   cryptoData$!: Observable<any>;
   dataSource!: MatTableDataSource<any>;
@@ -33,18 +32,18 @@ export class CryptoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllData();
-    // this.getCryptosValut();
+    this.getCryptosValut();
     this.currencyService.getCurrencyValut().subscribe((val) => {
       this.currency = val;
-      // this.getCryptosValut();
+      this.getCryptosValut();
     });
   }
 
-  // getCryptosValut() {
-  //   this.cryptoService.getCurrency(this.currency).subscribe((res) => {
-  //     this.dataSources = new MatTableDataSource(res);
-  //   });
-  // }
+  getCryptosValut() {
+    this.cryptoService.getCurrency(this.currency).subscribe((res) => {
+      this.dataSources = new MatTableDataSource(res);
+    });
+  }
 
   getAllData() {
     this.cryptoData$ = this.store.select(getCryptos);
